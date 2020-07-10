@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android" android:ordering="together">
+    <!-- y 축 이동 애니메이션 -->
+    <objectAnimator
+        android:duration="300"
+        android:propertyName="y"
+        android:repeatCount="1"
+        android:repeatMode="reverse"
+        android:valueFrom="700"
+        android:valueTo="300"
+        android:valueType="floatType" />
+
+    <!-- 알파 애니메이션  -->
+    <objectAnimator
+        android:duration="300"
+        android:propertyName="alpha"
+        android:repeatCount="1"
+        android:repeatMode="reverse"
+        android:valueTo="0.2"
+        android:valueType="floatType" />
+
+    <objectAnimator
+        android:duration="300"
+        android:propertyName="scale"
+        android:repeatCount="1"
+        android:repeatMode="reverse"
+        android:valueTo="0.2"
+        android:valueType="floatType" />
+
+
+</set>

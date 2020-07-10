@@ -1,5 +1,6 @@
 package com.honwon.punchpower
 
+import android.animation.*
 import android.content.Context
 import android.content.Intent
 import android.hardware.Sensor
@@ -9,6 +10,8 @@ import android.hardware.SensorManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Exception
 
@@ -39,6 +42,8 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 if (isStart){
+                    imageView.clearAnimation()
+
                     if(maxPower<power) maxPower = power
                     stateLabel.text = "펀치력을 측정하고 있습니다"
 
@@ -72,6 +77,26 @@ class MainActivity : AppCompatActivity() {
             sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION),
             SensorManager.SENSOR_DELAY_NORMAL
         )
+
+        stateLabel.startAnimation(AnimationUtils.loadAnimation(this@MainActivity, R.anim.alpa))
+        val animation = AnimationUtils.loadAnimation(this@MainActivity, R.anim.alpha_scale)
+        imageView.startAnimation(animation)
+
+        animation.setAnimationListener(object: Animation.AnimationListener{
+            override fun onAnimationRepeat(animation: Animation?) {
+                // 애니매이션이 반복될때의 처리 코드를 작성
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                // 애니메이션이 종료될때의 코드를 작성
+            }
+
+            override fun onAnimationStart(animation: Animation?) {
+                // 애니메이션이 시작될때의 코드를 작성
+            }
+        })
+
+
     }
 
     fun punchPowerTestComplete(power:Double){
