@@ -27,7 +27,7 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
-        title = "펀치력결과"
+        title = "너의 전투력은?"
 
         scoreLabel.text = "${String.format("%.0f", power)} 점"
 
@@ -49,10 +49,10 @@ class ResultActivity : AppCompatActivity() {
     fun uploadScore(){
         var user = GoogleSignIn.getLastSignedInAccount(this)
         user?.let{
-            val leaderboard = Games.getLeaderboardsClient(this@ResultActivity,user)
+            val leaderBoard = Games.getLeaderboardsClient(this@ResultActivity,user)
 
-            leaderboard.submitScoreImmediate(getString(R.string.leaderboard_id),power.toLong()).
-                    addOnSuccessListener { leaderboard.getLeaderboardIntent(getString(R.string.leaderboard_id)).
+            leaderBoard.submitScoreImmediate(getString(R.string.leaderboard),power.toLong()).
+                    addOnSuccessListener { leaderBoard.getLeaderboardIntent(getString(R.string.leaderboard)).
                     addOnSuccessListener { intent -> startActivityForResult(intent, RC_LEADERBOARD_UI) }}
         }
     }
@@ -66,7 +66,7 @@ class ResultActivity : AppCompatActivity() {
             } else {
                 var message = result.status.statusMessage
                 if(message == null || message.isEmpty()){
-                    message = "로그인 오류!!"
+                    message = "로그인 오류났다"
                 }
                 Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
             }

@@ -37,15 +37,17 @@ class MainActivity : AppCompatActivity() {
                     Math.pow(event.values[0].toDouble(),2.0)+Math.pow(event.values[1].toDouble(),2.0)+Math.pow(event.values[2].toDouble(), 2.0)
 
                 if (power >20 && !isStart){
+                    imageView.startAnimation(AnimationUtils.loadAnimation(this@MainActivity, R.anim.rotate))
                     startTime = System.currentTimeMillis()
                     isStart= true
                 }
 
                 if (isStart){
-                    imageView.clearAnimation()
+
+
 
                     if(maxPower<power) maxPower = power
-                    stateLabel.text = "펀치력을 측정하고 있습니다"
+                    stateLabel.text = "너의 전투력을 측정 중이다.."
 
                     if(System.currentTimeMillis() - startTime>3000){
                         isStart = false
@@ -59,6 +61,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        title = "펀치력 테스트"
     }
 
     override fun onStart() {
@@ -70,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         maxPower = 0.0
         isStart = false
         startTime = 0L
-        stateLabel.text = "핸드폰을 손에쥐고 주먹을 내지르세요"
+        stateLabel.text = "마 한번 치바라!"
 
         sensorManager.registerListener(
             eventListener,
