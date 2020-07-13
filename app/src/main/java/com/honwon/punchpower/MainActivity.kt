@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
                 val power =
                     Math.pow(event.values[0].toDouble(),2.0)+Math.pow(event.values[1].toDouble(),2.0)+Math.pow(event.values[2].toDouble(), 2.0)
 
-                if (power >20 && !isStart){
+                if (power >1000 && !isStart){
                     imageView.startAnimation(AnimationUtils.loadAnimation(this@MainActivity, R.anim.rotate))
                     startTime = System.currentTimeMillis()
                     isStart= true
